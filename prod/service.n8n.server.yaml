@@ -6,7 +6,7 @@ metadata:
   name: n8n
   namespace: n8n
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     service: n8n
   ports:
