@@ -8,7 +8,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: n8n  # Must match your Deployment's labels
+    service: n8n  # Must match your Deployment's labels
   ports:
   - port: 5678        # Changed from 443
     targetPort: 5678  # Must match containerPort
