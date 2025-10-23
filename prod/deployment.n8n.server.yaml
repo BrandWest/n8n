@@ -36,9 +36,9 @@ spec:
             - sleep 5; n8n start
           env:
             - name: VUE_APP_URL_BASE_API
-              value: <path:path#n8n_external_url
+              value: <n8n_external_url
             - name: WEBHOOK_URL
-              value: <path:path#n8n_external_url>
+              value: <n8n_external_url>
             - name: N8N_PROXY_HOPS
               value: "1"
             - name: N8N_METRICS
@@ -46,7 +46,7 @@ spec:
             - name: DB_TYPE
               value: postgresdb
             - name: DB_POSTGRESDB_HOST
-              value: <path:path# n8n_internal_postgres_url>
+              value: < n8n_internal_postgres_url>
             - name: DB_POSTGRESDB_PORT
               value: "5432"
             - name: DB_POSTGRESDB_DATABASE

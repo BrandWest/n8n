@@ -11,5 +11,5 @@ spec:
     - ReadWriteMany  # NFS supports multiple pods reading/writing
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: "<path:path#n8n_internal_url>"
+    server: "<n8n_internal_url>"
     path: /mnt/MainPool/k8s-storage/n8n  # Your NFS export path

@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - <path:path#n8n_external_url>
+    - <n8n_external_url>
     secretName: n8n-cert
   rules:
-  - host: <path:path#n8n_external_url>
+  - host: <n8n_external_url>
     http:
       paths:
       - path: /
