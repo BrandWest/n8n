@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: truenas-n8n-pv
+  annotations:
+    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
 spec:
   capacity:
     storage: 50Gi  # Adjust size as needed
@@ -9,5 +11,5 @@ spec:
     - ReadWriteMany  # NFS supports multiple pods reading/writing
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: "<path:n8n_internal_url>"
+    server: "<path:path#n8n_internal_url>"
     path: /mnt/MainPool/k8s-storage/n8n  # Your NFS export path

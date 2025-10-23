@@ -12,7 +12,7 @@ spec:
   issuerRef:
     name: n8n-letsencrypt
     kind: Issuer
-  commonName: "<path:n8n_external_url>"
+  commonName: "<path:path#n8n_external_url>"
   dnsNames:
-    - "<path:n8n_external_url>"
-    - "<path:n8n_internal_url"
+    - "<path:path#n8n_external_url>"
+    - "<path:path#n8n_internal_url"
