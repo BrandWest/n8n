@@ -37,9 +37,9 @@ spec:
             - -c
             - sleep 5; n8n start
           env:
-            - name: VUE_APP_URL_BASE_API
-              value: <n8n_external_url
             - name: WEBHOOK_URL
+              value: https://<n8n_external_url>
+            - name: N8N_HOST
               value: <n8n_external_url>
             - name: N8N_PROXY_HOPS
               value: "1"
