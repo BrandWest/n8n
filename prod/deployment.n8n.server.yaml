@@ -80,9 +80,6 @@ spec:
             runAsUser: 3000
             runAsGroup: 3000
           ports:
-            - containerPort: 80
-              name: n8n-internal
-              protocol: TCP
             - containerPort: 5678
               name: n8n-external
               protocol: TCP
