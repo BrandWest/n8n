@@ -18,7 +18,6 @@ spec:
     - selector:
         dnsNames:
         - <path:argocd/data/argocd-vault-plugin/n8n#n8n_external_url>
-        - <path:argocd/data/argocd-vault-plugin/n8n#n8n_internal_url>
       dns01:
         cloudflare:
           email: <path:argocd/data/argocd-vault-plugin/cloudflare#email>

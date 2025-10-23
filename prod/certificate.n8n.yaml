@@ -15,4 +15,3 @@ spec:
   commonName: <n8n_external_url>
   dnsNames:
     - <n8n_external_url>
-    - <n8n_internal_url>

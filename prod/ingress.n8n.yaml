@@ -24,5 +24,14 @@ spec:
           service:
             name: n8n-external
             port:
+              number: 443
+  - host: <n8n_internal_url>
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: n8n-internal
+            port:
               number: 80
-
