@@ -12,13 +12,22 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"  
     nginx.ingress.kubernetes.io/rewrite-target: /
     avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
-    nginx.ingress.kubernetes.io/websocket-services: "n8n"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    # These are the key annotations for WebSocket support
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
     nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_http_version 1.1;
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection "upgrade";
+      # Required headers from n8n docs
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      # Additional helpful headers
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_cache_bypass $http_upgrade;
 spec:
   ingressClassName: nginx
   tls:
