@@ -12,6 +12,13 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"  
     nginx.ingress.kubernetes.io/rewrite-target: /
     avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
+    nginx.ingress.kubernetes.io/websocket-services: "n8n"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    # These are the key annotations for WebSocket support
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
 spec:
   ingressClassName: nginx
   tls:
