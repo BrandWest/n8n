@@ -23,6 +23,6 @@ spec:
           email: <path:argocd/data/argocd-vault-plugin/cloudflare#email>
           # !! Remember to create a k8s secret before
           # kubectl create secret generic cloudflare-api-key-secret
-          apiKeySecretRef:
+          apiTokenSecretRef:
             name: cloudflare-api-token-secret
             key: api-token
