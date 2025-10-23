@@ -1,6 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  label: 
+    app.kubernetes.io/name: n8n
+    app.kubernetes.io/instance: n8n
   name: n8n-ingress
   namespace: n8n
   annotations:
@@ -23,7 +26,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: n8n-external
+            name: n8n
             port:
               number: 443
   - host: <n8n_internal_url>
@@ -33,6 +36,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: n8n-internal
+            name: n8n
             port:
               number: 80

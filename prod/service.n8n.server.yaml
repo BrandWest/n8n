@@ -6,15 +6,13 @@ metadata:
   name: n8n
   namespace: n8n
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    service: n8n
+    app: n8n
   ports:
-  - name: n8n-internal-svc
-    port: 80
+  - port: 80
     protocol: TCP
     targetPort: 80 #Container port
-  - name: n8n-external-svc
-    port: 443
+  - port: 443
     targetPort: 443
-    protocol: TCP  
+    protocol: TCP     

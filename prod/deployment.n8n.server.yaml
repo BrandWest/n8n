@@ -18,6 +18,7 @@ spec:
     metadata:
       labels:
         service: n8n
+        app: n8n
     spec:
       securityContext:           
         fsGroup: 3000            
