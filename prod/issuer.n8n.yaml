@@ -3,15 +3,12 @@ kind: Issuer
 metadata:
   name: n8n-letsencrypt
   namespace: n8n
-  annotations:
-    avp.kubernetes.io/path-1: "argocd/data/argocd-vault-plugin/cloudflare"
-    avp.kubernetes.io/path-2: "argocd/data/argocd-vault-plugin/n8n"
 spec:
   acme:
     # The ACME server URL
     server: https://acme-v02.api.letsencrypt.org/directory # For dev env
     # Email address used for ACME registration
-    email: "<path-1#email>"
+    email: <argocd/data/argocd-vault-plugin/cloudflare#email>
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
       name: n8n-letsencrypt
@@ -20,10 +17,10 @@ spec:
     # An empty 'selector' means that this solver matches all domains
     - selector:
         dnsNames:
-        - "<path-2#n8n_external_url>"
+        - <path:argocd/data/argocd-vault-plugin/n8n#n8n_url>
       dns01:
         cloudflare:
-          email: "<path-1#email>"
+          email: <argocd/data/argocd-vault-plugin/cloudflare#email>
           # !! Remember to create a k8s secret before
           # kubectl create secret generic cloudflare-api-key-secret
           apiKeySecretRef:
