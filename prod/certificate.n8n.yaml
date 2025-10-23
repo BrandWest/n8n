@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: n8n-cert
+  namespace: n8n
+  annotations:
+    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
+spec:
+  secretName: n8n-cert
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  issuerRef:
+    name: n8n-letsencrypt
+    kind: Issuer
+  commonName: n8n.diagon.cloud
+  dnsNames:
+    - "<path:n8n_external_url>"
+    - "<path:n8n_internal_url"
