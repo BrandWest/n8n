@@ -10,11 +10,11 @@ spec:
   selector:
     service: n8n
   ports:
-  - name: n8n-internal
+  - name: n8n-internal-svc
     port: 80
     protocol: TCP
     targetPort: 80 #Container port
-  - name: n8n-external
+  - name: n8n-external-svc
     port: 443
     targetPort: 443
     protocol: TCP  
