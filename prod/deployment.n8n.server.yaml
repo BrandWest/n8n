@@ -39,6 +39,12 @@ spec:
           env:
             - name: WEBHOOK_URL
               value: https://<n8n_external_url>
+            - name: N8N_API_DISABLED
+              value: "false"
+            - name: N8N_PUSH_BACKEND
+              value: "websocket"    
+            - name: N8N_PUBLIC_API_DISABLED
+              value: "false"                
             - name: N8N_HOST
               value: <n8n_external_url>
             - name: N8N_PROXY_HOPS
