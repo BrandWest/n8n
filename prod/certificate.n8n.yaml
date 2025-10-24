@@ -15,23 +15,23 @@
 #     - n8n.diagon.cloud 
 #     - n8n.diagon.ally
 
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: n8n-cert
-  namespace: n8n
-  annotations:
-    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
-spec:
-  secretName: n8n-cert
-  duration: 2160h # 90d
-  renewBefore: 360h # 15d
-  issuerRef:
-    name: n8n-letsencrypt
-    kind: Issuer
-  commonName: <n8n_external_url> # n8n-url
-  dnsNames:
-    - <n8n_external_url> # n8n-url
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: n8n-cert
+#   namespace: n8n
+#   annotations:
+#     avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
+# spec:
+#   secretName: n8n-cert
+#   duration: 2160h # 90d
+#   renewBefore: 360h # 15d
+#   issuerRef:
+#     name: n8n-letsencrypt
+#     kind: Issuer
+#   commonName: <n8n_external_url> # n8n-url
+#   dnsNames:
+#     - <n8n_external_url> # n8n-url
 ---
 #Wildcard
 apiVersion: cert-manager.io/v1
