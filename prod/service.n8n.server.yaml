@@ -3,17 +3,17 @@ kind: Service
 metadata:
   labels:
     service: n8n
-  name: n8n-internal  # Match Ingress backend name
+  name: n8n-internal
   namespace: n8n
 spec:
   type: ClusterIP
   selector:
-    service: n8n  # Must match your Deployment's labels
+    service: n8n
   ports:
-  - port: 5678        # Changed from 443
-    targetPort: 5678  # Must match containerPort
+  - port: 5678
+    targetPort: 5678
     protocol: TCP
-    name: https
+    name: http
 
 # # TrueNAS Service (using ClusterIP, not ExternalName)
 # apiVersion: v1

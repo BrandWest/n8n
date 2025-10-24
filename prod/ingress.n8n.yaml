@@ -31,6 +31,7 @@ metadata:
   namespace: n8n
   annotations:
     kubernetes.io/ingress.class: nginx
+    cert-manager.io/common-name: "*.diagon.ally"
     cert-manager.io/issuer: "vault-issuer"  # Using Issuer instead of ClusterIssuer
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
@@ -42,6 +43,7 @@ spec:
   tls:
   - hosts:
     - <n8n_internal_url>  #n8n-internal-url
+    - "*.diagon.ally"
     secretName: diagon-ally-tls 
   rules:
   - host: <n8n_internal_url>  #n8n-internal-url
