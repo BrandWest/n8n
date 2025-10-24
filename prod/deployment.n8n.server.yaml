@@ -72,7 +72,9 @@ spec:
             - name: N8N_ENDPOINT_REST
               value: "rest"
             - name: N8N_EDITOR_BASE_URL
-              value: "https://n8n.diagon.cloud/"      
+              value: "https://n8n.diagon.cloud/"     
+            - name: N8N_LOG_LEVEL
+              value: "debug"               
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
