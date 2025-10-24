@@ -39,6 +39,13 @@ metadata:
     # nginx.ingress.kubernetes.io/proxy-body-size: "0"
     # nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
     avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"   
+    # WebSocket support - THIS IS KEY FOR N8N
+    nginx.ingress.kubernetes.io/websocket-services: "n8n-internal"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    # Additional helpful settings
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
 spec:
   tls:
   - hosts:
