@@ -34,7 +34,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: vault-issuer
-  namespace: n8n
+  namespace: external-resources
   annotations:
     avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/vault"
 spec:

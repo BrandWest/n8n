@@ -41,16 +41,16 @@ metadata:
 spec:
   tls:
   - hosts:
-    - <n8n_external_url>  #n8n-internal-url
+    - <n8n_internal_url>  #n8n-internal-url
     secretName: diagon-ally-tls 
   rules:
-  - host: <n8n_external_url>  #n8n-internal-url
+  - host: <n8n_internal_url>  #n8n-internal-url
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: n8n-external
+            name: n8n-internal
             port:
-              number: 30027
+              number: 5678
