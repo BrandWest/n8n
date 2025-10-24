@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     service: n8n
-  name: n8n-external  # Match Ingress backend name
+  name: n8n-internal  # Match Ingress backend name
   namespace: n8n
 spec:
   type: ClusterIP
