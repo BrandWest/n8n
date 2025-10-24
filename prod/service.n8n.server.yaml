@@ -13,3 +13,23 @@ spec:
   - port: 5678        # Changed from 443
     targetPort: 5678  # Must match containerPort
     protocol: TCP
+    name: https
+
+# # TrueNAS Service (using ClusterIP, not ExternalName)
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: truenas-external
+#   namespace: external-resources
+# spec:
+#   type: ClusterIP
+#   ports:
+#   - port: 8080
+#     targetPort: 8080
+#     protocol: TCP
+#     name: http
+#   - port: 8443
+#     targetPort: 8443
+#     protocol: TCP
+#     name: https
+#   # No selector - this will use the manual Endpoints above

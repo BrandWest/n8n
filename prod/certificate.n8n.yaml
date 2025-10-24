@@ -1,3 +1,20 @@
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: n8n-cert
+#   namespace: n8n
+# spec:
+#   secretName: n8n-cert
+#   duration: 2160h # 90d
+#   renewBefore: 360h # 15d
+#   issuerRef:
+#     name: n8n-letsencrypt
+#     kind: Issuer
+#   commonName: n8n.diagon.cloud
+#   dnsNames:
+#     - n8n.diagon.cloud 
+#     - n8n.diagon.ally
+
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -12,6 +29,24 @@ spec:
   issuerRef:
     name: n8n-letsencrypt
     kind: Issuer
-  commonName: <n8n_external_url>
+  commonName: <n8n_external_url> # n8n-url
   dnsNames:
-    - <n8n_external_url>
+    - <n8n_external_url> # n8n-url
+---
+#Wildcard
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-cert
+  namespace: n8n
+spec:
+  secretName: diagon-ally-tls
+  duration: 2160h # 90 days
+  renewBefore: 360h # 15 days
+  issuerRef:
+    name: vault-issuer
+    kind: Issuer
+  commonName: "*.diagon.ally"
+  dnsNames:
+  - "*.diagon.ally"
+  - "diagon.ally"

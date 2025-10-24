@@ -1,28 +1,49 @@
+# apiVersion: cert-manager.io/v1
+# kind: Issuer
+# metadata:
+#   name: n8n-letsencrypt
+#   namespace: n8n
+#   annotations:
+#     avp.kubernetes.io/path-1: "argocd/data/argocd-vault-plugin/cloudflare"
+#     avp.kubernetes.io/path-2: "argocd/data/argocd-vault-plugin/n8n"
+# spec:
+#   acme:
+#     # The ACME server URL
+#     server: https://acme-v02.api.letsencrypt.org/directory # For dev env
+#     # Email address used for ACME registration
+#     email: <path:path-1#email>
+#     # Name of a secret used to store the ACME account private key
+#     privateKeySecretRef:
+#       name: n8n-letsencrypt
+#     # ACME DNS-01 provider configurations
+#     solvers:
+#     # An empty 'selector' means that this solver matches all domains
+#     - selector:
+#         dnsNames:
+#         - <path:path-2#n8n_url>
+#       dns01:
+#         cloudflare:
+#           email: <path:path-1#email>
+#           # !! Remember to create a k8s secret before
+#           # kubectl create secret generic cloudflare-api-key-secret
+#           apiKeySecretRef:
+#             name: n8n-cloudflare-api-token-secret
+#             key: api-token
+# Vault Issuer using ServiceAccount authentication
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: n8n-letsencrypt
-  namespace: n8n
+  name: vault-issuer
+  namespace: n8n``
+  annotations:
+    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/vault"
 spec:
-  acme:
-    # The ACME server URL
-    server: https://acme-v02.api.letsencrypt.org/directory # For dev env
-    # Email address used for ACME registration
-    email: <path:argocd/data/argocd-vault-plugin/cloudflare#email>
-    # Name of a secret used to store the ACME account private key
-    privateKeySecretRef:
-      name: n8n-letsencrypt
-    # ACME DNS-01 provider configurations
-    solvers:
-    # An empty 'selector' means that this solver matches all domains
-    - selector:
-        dnsNames:
-        - <path:argocd/data/argocd-vault-plugin/n8n#n8n_external_url>
-      dns01:
-        cloudflare:
-          email: <path:argocd/data/argocd-vault-plugin/cloudflare#email>
-          # !! Remember to create a k8s secret before
-          # kubectl create secret generic cloudflare-api-key-secret
-          apiTokenSecretRef:
-            name: cloudflare-api-token-secret
-            key: api-token
+  vault:
+    server: <vault_url>  # Update with your Vault URL
+    path: <pki_sign_int_path>          # Update with your PKI path
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: cert-manager  # Your existing Vault role
+        serviceAccountRef:
+          name: cert-manager  # References the ServiceAccount above
