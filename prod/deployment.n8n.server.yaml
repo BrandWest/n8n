@@ -68,7 +68,11 @@ spec:
             - name: N8N_PROTOCOL
               value: "https"
             - name: N8N_PORT
-              value: "5678"              
+              value: "5678"
+            - name: N8N_ENDPOINT_REST
+              value: "rest"
+            - name: N8N_EDITOR_BASE_URL
+              value: "https://n8n.diagon.cloud/"      
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
