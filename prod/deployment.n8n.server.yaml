@@ -59,6 +59,12 @@ spec:
               value: /home/node/.n8n
             - name: N8N_SECURE_COOKIE
               value: "true"
+            - name: VUE_APP_URL_BASE_API
+              value: https://<n8n_external_url>
+            - name: N8N_PROTOCOL
+              value: "https"
+            - name: N8N_PORT
+              value: "5678"              
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
@@ -69,10 +75,7 @@ spec:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_NON_ROOT_PASSWORD
-            - name: N8N_PROTOCOL
-              value: https
-            - name: N8N_PORT
-              value: "5678"
+
           image: n8nio/n8n
           name: n8n
           securityContext:
