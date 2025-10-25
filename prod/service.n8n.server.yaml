@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: n8n-internal
   namespace: n8n
-  annotations:
-    metallb.universe.tf/loadBalancerIPs: "10.0.0.232" 
 spec:
   type: LoadBalancer
   selector:
