@@ -5,8 +5,6 @@ metadata:
     service: n8n
   name: n8n
   namespace: n8n
-  annotations:
-    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
 spec:
   replicas: 1
   selector:
@@ -37,7 +35,7 @@ spec:
             - start
           env:
             - name: WEBHOOK_URL
-              value: https://<n8n_internal_url>  
+              value: https://<argocd/data/argocd-vault-plugin/n8n/n8n_internal_url>  
             - name: N8N_VERSION_CONTROL_ENABLED
               value: "true"
             - name: N8N_VERSION_CONTROL_GIT_USER_NAME
