@@ -47,13 +47,13 @@ spec:
             - name: N8N_VERSION_CONTROL_GIT_PRIVATE_KEY
               value: "<argocd/data/argocd-vault-plugin/git/git_private_key>"
             - name: N8N_HOST
-              value: <n8n_internal_url>
+              value: <argocd/data/argocd-vault-plugin/n8n/n8n_internal_url>
             - name: N8N_METRICS
               value: "true"
             - name: DB_TYPE
               value: postgresdb
             - name: DB_POSTGRESDB_HOST
-              value: <n8n_internal_postgres_url>
+              value: <argocd/data/argocd-vault-plugin/n8n/n8n_internal_postgres_url>
             - name: DB_POSTGRESDB_PORT
               value: "5432"
             - name: DB_POSTGRESDB_DATABASE
