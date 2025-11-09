@@ -3,6 +3,8 @@ kind: Certificate
 metadata:
   name: n8n-tls
   namespace: n8n
+  annotations:
+    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
 spec:
   secretName: n8n-tls-secret
   issuerRef:
@@ -10,5 +12,5 @@ spec:
     kind: Issuer
   commonName: "*.diagon.ally"
   dnsNames:
-  - n8n.diagon.ally
-  - "*.diagon.ally"
+  - <n8n_internal_url>
+  - <argocd/data/argocd-vault-plugin/network/wildcard_domain> # in network

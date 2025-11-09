@@ -32,13 +32,22 @@ spec:
             runAsUser: 0
       containers:
         - command:
-            - /bin/sh
+            - n8n
           args:
-            - -c
-            - sleep 5; n8n start
+            - start
           env:
             - name: WEBHOOK_URL
-              value: https://<n8n_internal_url>              
+              value: https://<n8n_internal_url>  
+            - name: N8N_VERSION_CONTROL_ENABLED
+              value: "true"
+            - name: N8N_VERSION_CONTROL_GIT_USER_NAME
+              value: "<argocd/data/argocd-vault-plugin/git/git_user_name>"
+            - name: N8N_VERSION_CONTROL_GIT_USER_EMAIL
+              value: "<argocd/data/argocd-vault-plugin/git/git_user_email>"
+            - name: N8N_VERSION_CONTROL_GIT_REPO_URL
+              value: "<argocd/data/argocd-vault-plugin/git/git_repo_url>"
+            - name: N8N_VERSION_CONTROL_GIT_PRIVATE_KEY
+              value: "<argocd/data/argocd-vault-plugin/git/git_private_key>"
             - name: N8N_HOST
               value: <n8n_internal_url>
             - name: N8N_METRICS
@@ -68,7 +77,17 @@ spec:
             - name: N8N_SSL_KEY
               value: "/etc/ssl/certs/n8n/tls.key"
             - name: N8N_SSL_CERT
-              value: "/etc/ssl/certs/n8n/tls.crt"    
+              value: "/etc/ssl/certs/n8n/tls.crt"
+            - name: EXECUTIONS_PROCESS
+              value: "main"
+            - name: N8N_PAYLOAD_SIZE_MAX
+              value: "16"
+            - name: EXECUTIONS_DATA_PRUNE
+              value: "true"
+            - name: EXECUTIONS_DATA_MAX_AGE
+              value: "168"
+            - name: N8N_CONCURRENCY_PRODUCTION_LIMIT
+              value: "10"
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
@@ -91,9 +110,29 @@ spec:
             # - containerPort: 5678
           resources:
             requests:
-              memory: "250Mi"
+              cpu: "1000m"
+              memory: "2Gi"
             limits:
-              memory: "500Mi"
+              cpu: "4000m"
+              memory: "4Gi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5678
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5678
+              scheme: HTTPS
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
           volumeMounts:
             - mountPath: /home/node/.n8n
               name: n8n-claim0

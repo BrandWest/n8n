@@ -1,0 +1,5 @@
+# SSH keys for n8n Git version control
+# These should be stored in Vault and injected via ArgoCD Vault Plugin
+n8n_id_ed25519
+n8n_id_ed25519.pub
+CLAUDE.md
