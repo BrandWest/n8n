@@ -4,6 +4,8 @@ metadata:
   name: truenas-n8n-pv
   annotations:
     avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
+    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-options: Prune=false
 spec:
   capacity:
     storage: 50Gi  # Adjust size as needed

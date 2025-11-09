@@ -5,6 +5,10 @@ metadata:
     service: n8n-claim0
   name: n8n-claim0
   namespace: n8n
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-options: Prune=false
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   accessModes:
     - ReadWriteOnce
