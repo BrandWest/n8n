@@ -3,8 +3,6 @@ kind: Certificate
 metadata:
   name: n8n-tls
   namespace: n8n
-  annotations:
-    avp.kubernetes.io/path: "argocd/data/argocd-vault-plugin/n8n"
 spec:
   secretName: n8n-tls-secret
   issuerRef:

@@ -35,25 +35,25 @@ spec:
             - start
           env:
             - name: WEBHOOK_URL
-              value: https://<argocd/data/argocd-vault-plugin/n8n/n8n_internal_url>  
+              value: https://<path:argocd/data/argocd-vault-plugin/n8n#n8n_internal_url>
             - name: N8N_VERSION_CONTROL_ENABLED
               value: "true"
             - name: N8N_VERSION_CONTROL_GIT_USER_NAME
-              value: "<argocd/data/argocd-vault-plugin/git/git_user_name>"
+              value: "<path:argocd/data/argocd-vault-plugin/git#git_user_name>"
             - name: N8N_VERSION_CONTROL_GIT_USER_EMAIL
-              value: "<argocd/data/argocd-vault-plugin/git/git_user_email>"
+              value: "<path:argocd/data/argocd-vault-plugin/git#git_user_email>"
             - name: N8N_VERSION_CONTROL_GIT_REPO_URL
-              value: "<argocd/data/argocd-vault-plugin/git/git_repo_url>"
+              value: "<path:argocd/data/argocd-vault-plugin/git#git_repo_url>"
             - name: N8N_VERSION_CONTROL_GIT_PRIVATE_KEY
-              value: "<argocd/data/argocd-vault-plugin/git/git_private_key>"
+              value: "<path:argocd/data/argocd-vault-plugin/git#git_private_key>"
             - name: N8N_HOST
-              value: <argocd/data/argocd-vault-plugin/n8n/n8n_internal_url>
+              value: <path:argocd/data/argocd-vault-plugin/n8n#n8n_internal_url>
             - name: N8N_METRICS
               value: "true"
             - name: DB_TYPE
               value: postgresdb
             - name: DB_POSTGRESDB_HOST
-              value: <argocd/data/argocd-vault-plugin/n8n/n8n_internal_postgres_url>
+              value: <path:argocd/data/argocd-vault-plugin/n8n#n8n_internal_postgres_url>
             - name: DB_POSTGRESDB_PORT
               value: "5432"
             - name: DB_POSTGRESDB_DATABASE
