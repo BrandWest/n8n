@@ -33,3 +33,38 @@ subjects:
 - kind: ServiceAccount
   name: cert-manager
   namespace: n8n
+
+--- 
+# vault-rotation-rbac.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vault-secret-rotator
+  namespace: n8n
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vault-secret-rotator
+  namespace: n8n
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "patch"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vault-secret-rotator
+  namespace: n8n
+subjects:
+- kind: ServiceAccount
+  name: vault-secret-rotator
+  namespace: n8n
+roleRef:
+  kind: Role
+  name: vault-secret-rotator
+  apiGroup: rbac.authorization.k8s.io
