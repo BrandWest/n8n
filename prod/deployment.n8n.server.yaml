@@ -84,8 +84,14 @@ spec:
               value: "true"
             - name: EXECUTIONS_DATA_MAX_AGE
               value: "168"
+            - name: EXECUTIONS_PRUN_MAX_COUNT
+              vault: "1000"
+            - name: "EXECUTIONS_PRUNE_TIMEOUT"
+              vaule: "7"
             - name: N8N_CONCURRENCY_PRODUCTION_LIMIT
               value: "10"
+            - name: N8N_AVAILABLE_ENV_VARS
+              vaule: VAULT_ADDR,VAULT_ROLE_ID,VAULT_SECRET_ID
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
