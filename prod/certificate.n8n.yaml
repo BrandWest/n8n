@@ -10,5 +10,5 @@ spec:
     kind: Issuer
   commonName: <path:argocd/data/argocd-vault-plugin/network#wildcard_domain>
   dnsNames:
-  - <path:argocd/data/argocd-vault-plugin/n8n#n8n_internal_url>
+  - <path:secret/data/apps/n8n#n8n_internal_url>
   - <path:argocd/data/argocd-vault-plugin/network#wildcard_domain>
